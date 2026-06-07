@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Galeri Detail Rumah</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f9f9f9;
+      font-family: system-ui, sans-serif;
+    }
+    .navbar-brand {
+      font-weight: bold;
+    }
+    .gallery-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin: 40px auto;
+      max-width: 1200px;
+    }
+    .property-item, .property-box {
+      width: 48%;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 30px;
+      padding: 10px;
+    }
+    .media-pair {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .media-pair img,
+    .media-pair video {
+      flex: 1;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 4px;
+      width: 50%;
+    }
+    .property-title {
+      background-color: #0d6efd;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 6px;
+      text-align: center;
+      text-transform: capitalize;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+    .property-info {
+      font-size: 14px;
+      color: #333;
+      padding-left: 5px;
+    }
+    @media (max-width: 768px) {
+      .property-item, .property-box {
+        width: 100%;
+      }
+      .media-pair {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="img/logo.png" alt="Logo Berkah Properti" height="40">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+        <li class="nav-item"><a class="nav-link" href="Tentang Kami.html">Tentang Kami</a></li>
+        <li class="nav-item"><a class="nav-link" href="Daftar Rumah.html">Daftar Rumah</a></li>
+        <li class="nav-item"><a class="nav-link" href="detail.html">Detail Rumah</a></li>
+        <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+        <li class="nav-item"><a class="nav-link" href="kpr.html">KPR</a></li>
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- JUDUL -->
+<h3 class="text-center mt-5 pt-4 text-primary fw-bold">Galeri Detail Rumah</h3>
+
+<!-- GALERI -->
+<div class="container mt-4">
+
+  <div class="gallery-row">
+
+    <!-- BIG TREES (gunakan property-box) -->
+    <div class="property-box">
+      <div class="property-title">Big Trees</div>
+      <div class="media-pair">
+        <img src="img/bigtrees1.jpg" alt="Big Trees">
+        <video controls><source src="video/bigtrees1.mp4" type="video/mp4"></video>
+      </div>
+      <div class="property-info">
+        <strong>Harga:</strong> Rp. 1.230.000.000<br>
+        <strong>Type:</strong> 90/98<br>
+        <strong>Agen:</strong> Syahrul Ramadhan <br>
+        <strong>Telepon:</strong> 0813-2015-0418
+      </div>
+    </div>
+
+    <!-- TAMAN KENANGA -->
+    <div class="property-item">
+      <div class="property-title">Taman Kenanga</div>
+      <div class="media-pair">
+        <img src="img/kenanga1.jpg" alt="Taman Kenanga">
+        <video controls><source src="video/kenanga1.mp4" type="video/mp4"></video>
+      </div>
+      <div class="property-info">
+        <strong>Harga:</strong> RP. 416.900.000<br>
+        <strong>Type:</strong> 48/72<br>
+        <strong>Agen:</strong> Syahrul Ramadhan<br>
+        <strong>Telepon:</strong> 0813-2015-0418
+      </div>
+    </div>
+
+    <!-- LIO ASRI -->
+    <div class="property-item">
+      <div class="property-title">Lio Asri</div>
+      <div class="media-pair">
+        <img src="img/lio1.jpg" alt="Lio Asri">
+        <video controls><source src="video/lioasri1.mp4" type="video/mp4"></video>
+      </div>
+      <div class="property-info">
+        <strong>Harga:</strong> Rp540.000.000<br>
+        <strong>Agen:</strong> Syahrul Ramadhan<br>
+        <strong>Type:</strong> 40/60<br>
+        <strong>Telepon:</strong> 0813-2015-0418
+      </div>
+    </div>
+
+    <!-- GRIYASARI -->
+    <div class="property-item">
+      <div class="property-title">Griyasari</div>
+      <div class="media-pair">
+        <img src="img/griyasari1.jpg" alt="Griyasari">
+        <video controls><source src="video/griyasari.mp4" type="video/mp4"></video>
+      </div>
+      <div class="property-info">
+        <strong>Harga:</strong> Rp600.000.000<br>
+        <strong>Agen:</strong> Syahrul Ramadhan<br>
+        <strong>Type:</strong> 30/60<br>
+        <strong>Telepon:</strong> 0813-2015-0418
+      </div>
+    </div>
+
+    <!-- PODOMORO -->
+    <div class="property-item">
+      <div class="property-title">Podomoro Park</div>
+      <div class="media-pair">
+        <img src="img/podomoro1.jpg" alt="Podomoro Park">
+        <video controls><source src="video/podomoro.mp4" type="video/mp4"></video>
+      </div>
+      <div class="property-info">
+        <strong>Harga:</strong> Rp950.000.000<br>
+        <strong>Agen:</strong> Syahrul Ramadhan<br>
+        <strong>Type:</strong> 140/147<br>
+        <strong>Telepon:</strong> 0813-2015-0418
+      </div>
+    </div>
+
+    <!-- CIPTA GREEN -->
+    <div class="property-item">
+      <div class="property-title">Cipta Green Land</div>
+      <div class="media-pair">
+        <img src="img/cipta1.jpg" alt="Cipta Green Land">
+        <video controls><source src="video/cipta.mp4" type="video/mp4"></video>
+      </div>
+      <div class="property-info">
+        <strong>Harga:</strong> Rp700.000.000<br>
+        <strong>Agen:</strong> Syahrul Ramadhan<br>
+        <strong>Type:</strong> 92/98<br>
+        <strong>Telepon:</strong> 0813-2015-0418
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-primary text-white text-center py-3 mt-4">
+  <p class="mb-0">&copy; 2025 PT Berkah Bersama Propertindo</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

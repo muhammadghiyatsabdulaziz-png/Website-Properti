@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Daftar Akun - Berkah Properti</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://jsdelivr.net" rel="stylesheet">
+  <style>
+    body { background: #f0f4f8; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .register-card { background: white; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); padding: 40px; width: 100%; max-width: 420px; }
+    .register-logo { text-align: center; margin-bottom: 24px; }
+    .register-logo img { height: 50px; }
+    .register-title { font-weight: 700; font-size: 1.5rem; color: #0d6efd; text-align: center; margin-bottom: 4px; }
+    .register-subtitle { color: #6c757d; text-align: center; font-size: 0.9rem; margin-bottom: 28px; }
+    .form-label { font-weight: 500; color: #333; }
+    .form-control { border-radius: 8px; padding: 10px 14px; }
+    .form-control:focus { border-color: #0d6efd; box-shadow: 0 0 0 0.2rem rgba(13,110,253,0.15); }
+    .btn-register { background: #0d6efd; color: white; padding: 12px; border-radius: 8px; font-weight: 600; border: none; width: 100%; font-size: 1rem; transition: all 0.3s; }
+    .btn-register:hover { background: #0b5ed7; }
+    .divider { text-align: center; color: #6c757d; margin: 16px 0; font-size: 0.85rem; }
+    .alert-error { display: none; background: #f8d7da; border: 1px solid #f5c2c7; border-radius: 8px; padding: 12px 16px; color: #842029; font-size: 0.9rem; margin-bottom: 16px; }
+    .alert-success { display: none; background: #d1e7dd; border: 1px solid #badbcc; border-radius: 8px; padding: 12px 16px; color: #0f5132; font-size: 0.9rem; margin-bottom: 16px; }
+  </style>
+</head>
+<body>
+
+<div class="register-card">
+  <div class="register-logo">
+    <img src="img/logo.png" alt="Logo Berkah Properti" onerror="this.style.display='none'">
+  </div>
+  <h2 class="register-title">Daftar Akun Baru</h2>
+  <p class="register-subtitle">Buat akun untuk mulai menggunakan Berkah Properti</p>
+  
+  <!-- Notifikasi Pesan -->
+  <div class="alert-error" id="errorMsg"></div>
+  <div class="alert-success" id="successMsg">Pendaftaran berhasil! Mengalihkan...</div>
+  
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input type="email" id="email" class="form-control" placeholder="email@contoh.com">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input type="password" id="password" class="form-control" placeholder="Minimal 6 karakter">
+  </div>
+  <div class="mb-4">
+    <label class="form-label">Konfirmasi Password</label>
+    <input type="password" id="confirmPassword" class="form-control" placeholder="Ulangi password Anda">
+  </div>
+  
+  <button class="btn-register" id="btnRegister">Daftar Sekarang</button>
+  
+  <div class="divider">Sudah punya akun?</div>
+  <a href="login.html" class="btn btn-outline-primary w-100" style="border-radius: 8px; padding: 10px; font-weight: 500;">Login Di Sini</a>
+  
+  <div class="mt-3 text-center">
+    <a href="index.html" class="text-muted" style="font-size: 0.85rem;">← Kembali ke Beranda</a>
+  </div>
+</div>
+
+<!-- JAVASCRIPT FIREBASE REGISTER -->
+<script type="module">
+  import { initializeApp } from "https://gstatic.com";
+  import { getAuth, createUserWithEmailAndPassword } from "https://gstatic.com";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDvRW192UEKVKh4fMK-BvFsveSxs7g52B4",
+    authDomain: "://firebaseapp.com",
+    projectId: "berkah-bersamapropertindo",
+    storageBucket: "berkah-bersamapropertindo.firebasestorage.app",
+    messagingSenderId: "340415383230",
+    appId: "1:340415383230:web:80b4424a7a221ecdf180ef"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  const errorMsg = document.getElementById('errorMsg');
+  const successMsg = document.getElementById('successMsg');
+  const btnRegister = document.getElementById('btnRegister');
+
+  async function handleRegister() {
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    errorMsg.style.display = 'none';
+    successMsg.style.display = 'none';
+
+    // Validasi Form Kosong
+    if (!email || !password || !confirmPassword) {
+      errorMsg.textContent = 'Semua kolom wajib diisi!';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    // Validasi Kesamaan Password
+    if (password !== confirmPassword) {
+      errorMsg.textContent = 'Password dan konfirmasi password tidak cocok!';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    btnRegister.textContent = 'Mendaftarkan...';
+    btnRegister.disabled = true;
+
+    try {
+      // Daftarkan user baru ke Firebase
+      await createUserWithEmailAndPassword(auth, email, password);
+      
+      successMsg.style.display = 'block';
+      
+      // Tunggu 2 detik, lalu arahkan user ke beranda utama secara otomatis
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
+
+    } catch (error) {
+      let msg = 'Pendaftaran gagal. Silakan coba lagi.';
+      
+      // Penanganan Error Khusus Firebase Register
+      if (error.code === 'auth/email-already-in-use') {
+        msg = 'Email ini sudah terdaftar. Silakan gunakan email lain.';
+      } else if (error.code === 'auth/weak-password') {
+        msg = 'Password terlalu lemah. Minimal harus terdiri dari 6 karakter.';
+      } else if (error.code === 'auth/invalid-email') {
+        msg = 'Format penulisan email tidak valid.';
+      }
+      
+      errorMsg.textContent = msg;
+      errorMsg.style.display = 'block';
+      btnRegister.textContent = 'Daftar Sekarang';
+      btnRegister.disabled = false;
+    }
+  }
+
+  // Event listener tombol klik
+  btnRegister.addEventListener('click', handleRegister);
+
+  // Event listener tombol Enter pada keyboard
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleRegister();
+    }
+  });
+</script>
+</body>
+</html>
